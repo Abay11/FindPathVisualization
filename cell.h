@@ -6,7 +6,7 @@
 class Cell : public QGraphicsRectItem
 {
 public:
- Cell(qreal x, qreal y, qreal width, qreal height);
+ Cell(qreal x, qreal y, qreal cellSideLength);
 };
 
 #endif // CELL_H

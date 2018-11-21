@@ -10,9 +10,9 @@ class Scene : public QGraphicsScene
 private:
  QVector<Cell*> cells;
 public:
- Scene(qreal x, qreal y, qreal width, qreal height);
+ Scene(qreal x, qreal y, qreal sceneSideLength);
 
- void fillOut(qreal cellWidth, qreal cellHeight);
+ void fillOut(qreal cellSideLength);
 };
 
 #endif // SCENE_H
