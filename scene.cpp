@@ -1,5 +1,6 @@
 #include "scene.h"
 
+
 Scene::Scene(qreal x, qreal y, qreal length)
  :QGraphicsScene (x, y, length, length)
 {

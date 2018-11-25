@@ -17,8 +17,7 @@ private:
  void zoomOut();
 
 public:
- View(QWidget *parent = 0);
- ~View();
+ View(QWidget *parent = nullptr);
 
  void wheelEvent(QWheelEvent *pe) override;
 };

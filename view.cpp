@@ -22,13 +22,8 @@ void View::zoomOut()
 
 View::View(QWidget *parent)
  : QGraphicsView(parent)
-{
-}
+{}
 
-View::~View()
-{
-
-}
 
 void View::wheelEvent(QWheelEvent *pe)
 {
