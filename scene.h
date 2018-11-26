@@ -4,6 +4,7 @@
 #include "cell.h"
 
 #include <QGraphicsScene>
+#include <QKeyEvent>
 
 class Scene : public QGraphicsScene
 {

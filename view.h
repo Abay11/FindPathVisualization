@@ -18,7 +18,6 @@ private:
 
 public:
  View(QWidget *parent = nullptr);
-
  void wheelEvent(QWheelEvent *pe) override;
 };
 

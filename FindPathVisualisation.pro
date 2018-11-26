@@ -27,15 +27,15 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
     scene.cpp \
-    cell.cpp \
     view.cpp \
-    widget.cpp
+    widget.cpp \
+    cell.cpp
 
 HEADERS += \
     scene.h \
-    cell.h \
     view.h \
-    widget.h
+    widget.h \
+    cell.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
