@@ -29,13 +29,15 @@ SOURCES += \
     scene.cpp \
     view.cpp \
     widget.cpp \
-    cell.cpp
+    cell.cpp \
+    findpathimplementation.cpp
 
 HEADERS += \
     scene.h \
     view.h \
     widget.h \
-    cell.h
+    cell.h \
+    findpathimplementation.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
