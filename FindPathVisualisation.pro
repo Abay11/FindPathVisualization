@@ -29,13 +29,15 @@ SOURCES += \
     scene.cpp \
     view.cpp \
     widget.cpp \
-    cell.cpp
+    cell.cpp \
+    logicimpl.cpp
 
 HEADERS += \
     scene.h \
     view.h \
     widget.h \
-    cell.h
+    cell.h \
+    logicimpl.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
