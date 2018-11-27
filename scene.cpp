@@ -19,3 +19,11 @@ void Scene::fillOut(qreal length)
 		addItem(c);
 	 }
 }
+
+void Scene::slotCleanAll()
+{
+ for(auto c : cells)
+	{
+	 c->setBrush(QBrush(Qt::white));
+	}
+}
