@@ -18,6 +18,9 @@ int main(int argc, char *argv[])
  Widget *pwidget=new Widget(v);
 
  QObject::connect(pwidget, SIGNAL(cleanAll()), scene, SLOT(slotCleanAll()));
+ QObject::connect(pwidget, SIGNAL(startInstalled()), scene, SLOT(slotSetStartCell()));
+ QObject::connect(pwidget, SIGNAL(finishInstalled()), scene, SLOT(slotSetFinishCell()));
+
 
  QMainWindow main;
  main.setCentralWidget(pwidget);

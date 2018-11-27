@@ -31,6 +31,8 @@ public:
 
 signals:
  void cleanAll();
+ void startInstalled();
+ void finishInstalled();
 
 public slots:
  void slotCleanAll();

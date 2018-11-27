@@ -24,6 +24,15 @@ bool Widget::eventFilter(QObject *obj, QEvent *pe)
 		 else
 			ptextInfo->setText("Status: Nothing");
 		}
+	 else if(keyEvent->key()==Qt::Key_S)
+		{
+		 emit startInstalled();
+		}
+	 else if(keyEvent->key()==Qt::Key_F)
+		{
+		 emit finishInstalled();
+		}
+
 	}
 
  return QObject::eventFilter(obj, pe);

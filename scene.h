@@ -11,12 +11,17 @@ class Scene : public QGraphicsScene
  Q_OBJECT
 private:
  QVector<Cell*> cells;
+ Cell *start;
+ Cell *finish;
+
 public:
  Scene(qreal x, qreal y, qreal sceneSideLength);
  void fillOut(qreal cellSideLength);
 
  public slots:
  void slotCleanAll();
+ void slotSetStartCell();
+ void slotSetFinishCell();
 
 };
 

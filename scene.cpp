@@ -14,6 +14,7 @@ void Scene::fillOut(qreal length)
 	for(int j=0; j<sideLength; ++j)
 	 {
 		Cell *c=new Cell(i*length, j*length, length);
+		c->setCoordinates(i, j);
 
 		cells.push_back(c);
 		addItem(c);
@@ -26,4 +27,20 @@ void Scene::slotCleanAll()
 	{
 	 c->setBrush(QBrush(Qt::white));
 	}
+}
+
+void Scene::slotSetStartCell()
+{
+ start=qgraphicsitem_cast<Cell*>(focusItem());
+ if(start)
+	qDebug()<<"Received start pos: "<<this->start->getCoordinates().y()
+				<<this->start->getCoordinates().x();
+}
+
+void Scene::slotSetFinishCell()
+{
+ finish=qgraphicsitem_cast<Cell*>(focusItem());
+ if(finish)
+	qDebug()<<"Received finish pos: "<<this->finish->getCoordinates().y()
+				<<this->finish->getCoordinates().x();
 }

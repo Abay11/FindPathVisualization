@@ -3,10 +3,22 @@
 bool Cell::isSpacePressed=false;
 bool Cell::isCPressed=false;
 
-Cell::Cell(qreal x, qreal y, qreal length) : QGraphicsRectItem (x, y, length, length)
+Cell::Cell(qreal x, qreal y, qreal length)
+ : QGraphicsRectItem (x, y, length, length)
 {
  setAcceptHoverEvents(true);
  setFlag(QGraphicsItem::ItemIsFocusable, true);
+}
+
+void Cell::setCoordinates(int x, int y)
+{
+ xyPos.rx()=x;
+ xyPos.ry()=y;
+}
+
+const QPoint Cell::getCoordinates()
+{
+ return xyPos;
 }
 
 void Cell::keyPressEvent(QKeyEvent *pe)
