@@ -15,13 +15,15 @@ private:
  static bool isSpacePressed;
  static bool isCPressed;
 
- QPoint xyPos{-1,-1};
+ QPoint xyPos;
  int value=-1;
 
 public:
  Cell(qreal x, qreal y, qreal cellSideLength);
- void setCoordinates(int x, int y);
- const QPoint getCoordinates();
+ void setCoordinates(int y, int x);
+ const QPoint& getCoordinates() const;
+ void setValue(int value);
+ int getValue();
 
  void keyPressEvent(QKeyEvent *event) override;
  void hoverEnterEvent(QGraphicsSceneHoverEvent *pe) override;

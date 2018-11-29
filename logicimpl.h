@@ -4,20 +4,26 @@
 #include "cell.h"
 
 #include <QVector>
+#include <QQueue>
 
 class LogicImpl
 {
 private:
- QVector<Cell*> *cells;
- const Cell* startCell;
- const Cell* finishCell;
+ QVector<Cell *> *cells;
+ int cellsSize=0;
+ int count;
+ Cell *startCell;
+ Cell *finishCell;
+ QQueue<Cell *> unprocessed;
 
 public:
- LogicImpl(QVector<Cell*> *cells);
-
-private:
+ LogicImpl(QVector<Cell *> *cells,
+					 int sideCount);
+ void setStartFinish(Cell *startCell, Cell *finishCell);
  void calcValues();
  void buildPath();
+ bool isStartCell(int index);
+ void appendToUnprocessed(int index);
 };
 
 #endif // FINDPATHIMPLEMENTATION_H

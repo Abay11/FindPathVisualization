@@ -10,15 +10,25 @@ Cell::Cell(qreal x, qreal y, qreal length)
  setFlag(QGraphicsItem::ItemIsFocusable, true);
 }
 
-void Cell::setCoordinates(int x, int y)
+void Cell::setCoordinates(int y, int x)
 {
- xyPos.rx()=x;
  xyPos.ry()=y;
+ xyPos.rx()=x;
 }
 
-const QPoint Cell::getCoordinates()
+const QPoint& Cell::getCoordinates() const
 {
  return xyPos;
+}
+
+void Cell::setValue(int value)
+{
+ this->value=value;
+}
+
+int Cell::getValue()
+{
+ return value;
 }
 
 void Cell::keyPressEvent(QKeyEvent *pe)
