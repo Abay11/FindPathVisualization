@@ -24,6 +24,7 @@ public:
  void buildPath();
  bool isStartCell(int index);
  void appendToUnprocessed(int index);
+ void updateValue(Cell *c, int index);
 };
 
 #endif // FINDPATHIMPLEMENTATION_H

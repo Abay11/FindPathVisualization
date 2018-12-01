@@ -16,98 +16,80 @@ void LogicImpl::setStartFinish(Cell *startCell, Cell *finishCell)
 void LogicImpl::calcValues()
 {
  startCell->setValue(0);
- int startX=startCell->getCoordinates().x();
- int startY=startCell->getCoordinates().y();
+ unprocessed.append(startCell);
 
- //the right cell from start
- unprocessed.append(cells->at(startY*count + startX+1));
- //the down from start
- unprocessed.append(cells->at((startY+1)*count + startX));
- //the right-bottom from start
- unprocessed.append(cells->at((startY+1)*count + startX+1));
-
- for(auto c : unprocessed)
+// for(auto c=unprocessed.begin();
+//		 c!=unprocessed.end(); ++c)
+ for(int i=0; i<cellsSize; ++i)
 	{
-	 int x=c->getCoordinates().x();
-	 int y=c->getCoordinates().y();
-
+	 auto c = unprocessed.at(i);
+	 int x=(c)->getCoordinates().x();
+	 int y=(c)->getCoordinates().y();
 	 int index=0;
-	 int value=0;
-//	 right
-//	 index=y*count+x+1;
-//	 if(index<y*count+count)
-//		{
-//		 value=cells->at(index)->getValue();
-//		 if(value!=-1)
-//			{
-//			 if(c->getValue()==-1 || c->getValue()>value)
-//				c->setValue(value + 1);
-//			}
 
-//		 appendToUnprocessed(index);
-//		}
+	 //	 right
+	 index=y*count+x+1;
+	 if(index<y*count+count)
+		{
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
+		}
 
 	 //left
-//	 /*
 	 index=y*count+x-1;
 	 if(index>=y*count)
 		{
-		 value=cells->at(index)->getValue();
-			 if((c->getValue()>value && c->getValue()!=-1 && value!=-1)
-					|| (c->getValue()==-1 && value!=-1))
-				c->setValue(value + 1);
-//			}
-//		 else
-
-//			unprocessed.append(cells->at(index));
-
-			 appendToUnprocessed(index);
-//		 if(!isStartCell(index) && !unprocessed.contains(cells->at(index)))
-//			unprocessed.append(cells->at(index));
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
 		}
-//		*/
 
 	 //top
 	 index=(y-1)*count+x;
 	 if(index>=0)
 		{
-		 value=cells->at(index)->getValue();
-		 if((c->getValue()>value && c->getValue()!=-1) || c->getValue()==-1)
-			c->setValue(value + 1);
-
+		 updateValue(c, index);
 		 appendToUnprocessed(index);
 		}
 
+	 //bottom
+	 index=(y+1)*count+x;
+	 if(index<cellsSize)
+		{
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
+		}
 
-	 //down ...
+	 //bottom right
+	 index=(y+1)*count+x+1;
+	 if(index<cellsSize && index<(y+1)*count+count)
+		{
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
+		}
 
-	 //top left diagonal
+	 //bottom left
+	 index=(y+1)*count+x-1;
+	 if(index<cellsSize && index>=(y+1)*count)
+		{
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
+		}
+
+	 //top right
+	 index=(y-1)*count+x+1;
+	 if(x<count-1 && index>=0 && index<=(y-1)*count+count)
+		{
+		 updateValue(c, index);
+		 appendToUnprocessed(index);
+		}
+
+	 //top left
 	 index=(y-1)*count+x-1;
 	 if(index>=0 && index>=(y-1)*count)
 		{
-		 value=cells->at(index)->getValue();
-		 if((c->getValue()>value && c->getValue()!=-1 && value!=-1)
-				|| (c->getValue()==-1 && value!=-1))
-			c->setValue(value + 1);
+		 updateValue(c, index);
 		 appendToUnprocessed(index);
 		}
-
-	 /*
-	 //bottom right diagonal
-	 index=(y+1)*count+x+1;
-	 if(index<y*count+count)
-		{
-		 value=cells->at(index)->getValue();
-//		 if(value!=-1)
-//			{
-			 if((c->getValue()>value && c->getValue()!=-1) || c->getValue()==-1)
-				c->setValue(value + 1);
-//			}
-//		 else
-			 appendToUnprocessed(index);
-//			unprocessed.append(cells->at(index));
-		}
-		*/
 	}
 }
 
@@ -125,4 +107,12 @@ void LogicImpl::appendToUnprocessed(int index)
 {
  if(!isStartCell(index) && !unprocessed.contains(cells->at(index)))
 	unprocessed.append(cells->at(index));
+}
+
+void LogicImpl::updateValue(Cell *c, int index)
+{
+ int value=cells->at(index)->getValue();
+ if(value!=-1)
+	if(c->getValue()==-1 || c->getValue()>value)
+	 c->setValue(value + 1);
 }
