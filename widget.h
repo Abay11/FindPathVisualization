@@ -30,12 +30,12 @@ public:
  explicit Widget(QWidget *child, QWidget *parent = nullptr);
 
 signals:
+ void startSearch();
  void cleanAll();
  void startInstalled();
  void finishInstalled();
 
 public slots:
- void slotCleanAll();
 };
 
 #endif // SIMPLE_H

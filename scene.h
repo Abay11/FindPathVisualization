@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include "cell.h"
+#include "logicimpl.h"
 
 #include <QGraphicsScene>
 #include <QKeyEvent>
@@ -13,12 +14,14 @@ private:
  QVector<Cell*> cells;
  Cell *start;
  Cell *finish;
+ int sceneSideLength;
 
 public:
- Scene(qreal x, qreal y, qreal sceneSideLength);
+ Scene(qreal x, qreal y, int sceneSideLength);
  void fillOut(qreal cellSideLength);
 
  public slots:
+ void slotStartSearch();
  void slotCleanAll();
  void slotSetStartCell();
  void slotSetFinishCell();

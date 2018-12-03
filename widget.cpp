@@ -58,10 +58,6 @@ Widget::Widget(QWidget *child, QWidget *parent)
  setLayout(pvlay);
  qApp->installEventFilter(this);
 
- connect(pcmdClean, SIGNAL(clicked()), SLOT(slotCleanAll()));
-}
-
-void Widget::slotCleanAll()
-{
- emit cleanAll();
+ connect(pcmdStart, SIGNAL(clicked()), SIGNAL(startSearch()));
+ connect(pcmdClean, SIGNAL(clicked()), SIGNAL(cleanAll()));
 }

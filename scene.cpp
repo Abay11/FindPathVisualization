@@ -1,9 +1,10 @@
 #include "scene.h"
 
 
-Scene::Scene(qreal x, qreal y, qreal length)
+Scene::Scene(qreal x, qreal y, int length)
  :QGraphicsScene (x, y, length, length)
 {
+ this->sceneSideLength=length;
 }
 
 void Scene::fillOut(qreal length)
@@ -19,6 +20,18 @@ void Scene::fillOut(qreal length)
 		cells.push_back(c);
 		addItem(c);
 	 }
+}
+
+void Scene::slotStartSearch()
+{
+ LogicImpl *logic=new LogicImpl(&cells, 60);
+ logic->setStartFinish(start, finish);
+
+ logic->calcValues();
+ auto path=logic->buildPath();
+ for(auto c : path)
+	if(c!=start) c->setBrush(QBrush(Qt::magenta));
+ delete logic;
 }
 
 void Scene::slotCleanAll()
