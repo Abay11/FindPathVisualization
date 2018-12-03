@@ -17,6 +17,7 @@ private:
 
  QPoint xyPos;
  int value=-1;
+ Cell *parent=nullptr;
 
 public:
  Cell(qreal x, qreal y, qreal cellSideLength);
@@ -24,6 +25,9 @@ public:
  const QPoint& getCoordinates() const;
  void setValue(int value);
  int getValue();
+
+ void setParent(Cell *parent);
+ Cell *getParent();
 
  void keyPressEvent(QKeyEvent *event) override;
  void hoverEnterEvent(QGraphicsSceneHoverEvent *pe) override;

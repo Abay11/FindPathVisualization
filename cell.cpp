@@ -31,6 +31,16 @@ int Cell::getValue()
  return value;
 }
 
+void Cell::setParent(Cell *parent)
+{
+ this->parent=parent;
+}
+
+Cell *Cell::getParent()
+{
+ return parent;
+}
+
 void Cell::keyPressEvent(QKeyEvent *pe)
 {
  qDebug()<<pos().x()<<" "<<pos().y();
