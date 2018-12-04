@@ -24,22 +24,33 @@ void Scene::fillOut(qreal length)
 
 void Scene::slotStartSearch()
 {
- LogicImpl *logic=new LogicImpl(&cells, 40);
- logic->setStartFinish(start, finish);
+ if(start && finish)
+	{
+	 LogicImpl *logic=new LogicImpl(&cells, 40);
+	 logic->setStartFinish(start, finish);
 
- logic->calcValues();
- auto path=logic->buildPath();
- for(auto c : *path)
-	if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+	 logic->calcValues();
+	 auto path=logic->buildPath();
+	 for(auto c : *path)
+		if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
 
- delete path;
- delete logic;
+	 delete path;
+	 delete logic;
+	}
+ else
+	{
+	 qWarning()<<"Start or finish not set";
+	}
 }
 
 void Scene::slotCleanAll()
 {
+ start=nullptr;
+ finish=nullptr;
  for(auto c : cells)
 	{
+	 c->setValue(-1);
+	 c->setParent(nullptr);
 	 c->setBrush(QBrush(Qt::white));
 	}
 }
@@ -50,6 +61,7 @@ void Scene::slotSetStartCell()
  if(start)
 	qDebug()<<"Received start pos: "<<this->start->getCoordinates().y()
 				<<this->start->getCoordinates().x();
+ else qWarning()<<"Attempt to install null to start";
 }
 
 void Scene::slotSetFinishCell()
@@ -58,4 +70,5 @@ void Scene::slotSetFinishCell()
  if(finish)
 	qDebug()<<"Received finish pos: "<<this->finish->getCoordinates().y()
 				<<this->finish->getCoordinates().x();
+ else qWarning()<<"Attempt to install null to finish";
 }
