@@ -27,11 +27,13 @@ private slots:
  void test_calcValues10();
  void test_calcValues11();
  void test_calcValues12();
+ void test_calcValues13();
 
  void test_buildPath1();
  void test_buildPath2();
  void test_buildPath3();
  void test_buildPath4();
+ void test_buildPath5();
 };
 
 test::test()
@@ -365,6 +367,29 @@ void test::test_calcValues12()
 	delete c;
 }
 
+void test::test_calcValues13()
+{
+ //10x10
+ int size=10;
+ QVector<Cell *> cells;
+ for(int i=0; i<size; ++i)
+	for(int j=0; j<size; ++j)
+	 {
+		Cell *c=new Cell(0, 0, 0);
+		c->setCoordinates(i, j);
+		cells.push_back(c);
+	 }
+
+ LogicImpl logic(&cells, size);
+ logic.setStartFinish(cells[0], cells[9]);
+ logic.calcValues();
+
+ QCOMPARE(cells[0]->getValue(), 0); QCOMPARE(cells[1]->getValue(), 1); QCOMPARE(cells[2]->getValue(), 2); QCOMPARE(cells[3]->getValue(), 3); QCOMPARE(cells[4]->getValue(), 4); QCOMPARE(cells[5]->getValue(), 5);  QCOMPARE(cells[6]->getValue(), 6);  QCOMPARE(cells[7]->getValue(), 7);  QCOMPARE(cells[8]->getValue(), 8);  QCOMPARE(cells[9]->getValue(), 9);
+
+ for(auto c : cells)
+	delete c;
+}
+
 void test::test_buildPath1()
 {
  //2x2
@@ -468,6 +493,31 @@ void test::test_buildPath4()
  QCOMPARE(cells[6]->getParent(), cells[9]);
  QCOMPARE(cells[9]->getParent(), cells[12]);
  QCOMPARE(cells[12]->getParent(), nullptr);
+
+ for(auto c : cells)
+	delete c;
+}
+
+void test::test_buildPath5()
+{
+ //10x10
+ int size=10;
+ QVector<Cell *> cells;
+ for(int i=0; i<size; ++i)
+	for(int j=0; j<size; ++j)
+	 {
+		Cell *c=new Cell(0, 0, 0);
+		c->setCoordinates(i, j);
+		cells.push_back(c);
+	 }
+
+ LogicImpl logic(&cells, size);
+ logic.setStartFinish(cells[0], cells[9]);
+ logic.calcValues();
+ auto path=logic.buildPath();
+ QCOMPARE(path->size(), 9);
+
+
 
  for(auto c : cells)
 	delete c;

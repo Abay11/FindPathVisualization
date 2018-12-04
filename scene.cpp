@@ -24,13 +24,15 @@ void Scene::fillOut(qreal length)
 
 void Scene::slotStartSearch()
 {
- LogicImpl *logic=new LogicImpl(&cells, 60);
+ LogicImpl *logic=new LogicImpl(&cells, 40);
  logic->setStartFinish(start, finish);
 
  logic->calcValues();
  auto path=logic->buildPath();
- for(auto c : path)
-	if(c!=start) c->setBrush(QBrush(Qt::magenta));
+ for(auto c : *path)
+	if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+
+ delete path;
  delete logic;
 }
 

@@ -21,7 +21,7 @@ public:
 					 int sideCount);
  void setStartFinish(Cell *startCell, Cell *finishCell);
  void calcValues();
- QVector<Cell *> buildPath();
+ QVector<Cell *> *buildPath();
  bool isStartCell(int index);
  void appendToUnprocessed(int index);
  void updateValue(Cell *c, int index);

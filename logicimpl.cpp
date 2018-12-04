@@ -18,8 +18,6 @@ void LogicImpl::calcValues()
  startCell->setValue(0);
  unprocessed.append(startCell);
 
-// for(auto c=unprocessed.begin();
-//		 c!=unprocessed.end(); ++c)
  for(int i=0; i<cellsSize; ++i)
 	{
 	 auto c = unprocessed.at(i);
@@ -93,14 +91,14 @@ void LogicImpl::calcValues()
 	}
 }
 
-QVector<Cell *> LogicImpl::buildPath()
+QVector<Cell *> *LogicImpl::buildPath()
 {
- QVector<Cell *> path;
- path.append(finishCell->getParent());
- for(auto it=path.begin(); (*it)->getParent()!=nullptr; ++it)
-	{
-	 path.append((*it)->getParent());
-	}
+ QVector<Cell *> *path=new QVector<Cell *>;
+ path->append(finishCell->getParent());
+ for(int i=0, size=path->size(); i<size; ++i, size=path->size())
+	if(path->at(i)->getParent())
+		path->append(path->at(i)->getParent());
+
  return path;
 }
 
@@ -119,7 +117,7 @@ void LogicImpl::updateValue(Cell *c, int index)
 {
  int value=cells->at(index)->getValue();
  if(value!=-1)
-	if(c->getValue()==-1 || c->getValue()>value)
+	if(c->getValue()==-1 || c->getValue()>value+1)
 	 {
 		c->setValue(value + 1);
 		c->setParent(cells->at(index));
