@@ -21,6 +21,12 @@ void LogicImpl::calcValues()
  for(int i=0; i<cellsSize; ++i)
 	{
 	 auto c = unprocessed.at(i);
+	 if(c==finishCell)
+		{
+		 c->setParent(unprocessed.at(i-1)->getParent()); //чет сомнительно выглядит, еще раз нужно посмотреть
+		return;
+		}
+
 	 int x=(c)->getCoordinates().x();
 	 int y=(c)->getCoordinates().y();
 	 int index=0;
