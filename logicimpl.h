@@ -24,6 +24,7 @@ public:
  void calcValues();
  QVector<Cell *> *buildPath();
  bool isStartCell(int index);
+ bool isWall(int index);
  void appendToUnprocessed(int index);
  void updateValue(Cell *c, int index);
 };

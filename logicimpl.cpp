@@ -116,6 +116,11 @@ bool LogicImpl::isStartCell(int index)
  return startCell==cells->at(index);
 }
 
+bool LogicImpl::isWall(int index)
+{
+ return cells->at(index)->brush()==QBrush(Qt::black);
+}
+
 void LogicImpl::appendToUnprocessed(int index)
 {
  if(!isStartCell(index) && !unprocessed.contains(cells->at(index)))

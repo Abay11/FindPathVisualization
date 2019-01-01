@@ -34,6 +34,8 @@ private slots:
  void test_buildPath4x4();
  void test_buildPath10x10();
  void test_buildPath20x20();
+
+ void test_isWall();
 };
 
 test::test()
@@ -507,6 +509,22 @@ void test::test_buildPath20x20()
 
  for(auto c : cells)
 	delete c;
+}
+
+void test::test_isWall()
+{
+ QVector<Cell *> cells;
+ Cell *wall=new Cell(0,0,0);
+ wall->setBrush(QBrush(Qt::black));
+ cells.push_back(wall);
+
+ Cell *notwall=new Cell(0,0,0);
+ notwall->setBrush(QBrush(Qt::white));
+ cells.push_back(notwall);
+
+ LogicImpl logic(&cells, 1);
+ QCOMPARE(logic.isWall(0), true);
+ QCOMPARE(logic.isWall(1), false);
 }
 
 
