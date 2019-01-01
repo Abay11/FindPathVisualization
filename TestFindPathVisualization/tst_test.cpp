@@ -102,7 +102,7 @@ void test::test_calcValues2()
 
  QCOMPARE(cells[0]->getValue(), 1);
  QCOMPARE(cells[1]->getValue(), 0);
- QCOMPARE(cells[2]->getValue(), 1);
+ QCOMPARE(cells[2]->getValue(), -1);
  QCOMPARE(cells[3]->getValue(), 1);
 
  for(auto c : cells)
@@ -125,8 +125,8 @@ void test::test_calcValues3()
  logic.setStartFinish(cells[2], cells[3]);
  logic.calcValues();
 
- QCOMPARE(cells[0]->getValue(), 1);
- QCOMPARE(cells[1]->getValue(), 1);
+ QCOMPARE(cells[0]->getValue(), -1);
+ QCOMPARE(cells[1]->getValue(), -1);
  QCOMPARE(cells[2]->getValue(), 0);
  QCOMPARE(cells[3]->getValue(), 1);
 
@@ -280,10 +280,7 @@ void test::test_calcValues9()
  logic.setStartFinish(cells[3], cells[0]);
  logic.calcValues();
 
- QCOMPARE(cells[0]->getValue(), 3); QCOMPARE(cells[1]->getValue(), 2); QCOMPARE(cells[2]->getValue(), 1); QCOMPARE(cells[3]->getValue(), 0);
- QCOMPARE(cells[4]->getValue(), 3); QCOMPARE(cells[5]->getValue(), 2); QCOMPARE(cells[6]->getValue(), 1); QCOMPARE(cells[7]->getValue(), 1);
- QCOMPARE(cells[8]->getValue(), 3); QCOMPARE(cells[9]->getValue(), 2); QCOMPARE(cells[10]->getValue(), 2); QCOMPARE(cells[11]->getValue(), 2);
- QCOMPARE(cells[12]->getValue(), 3); QCOMPARE(cells[13]->getValue(), 3); QCOMPARE(cells[14]->getValue(), 3); QCOMPARE(cells[15]->getValue(), 3);
+ QCOMPARE(cells[0]->getValue(), 3); QCOMPARE(cells[3]->getValue(), 0);
 
  for(auto c : cells)
 	delete c;
