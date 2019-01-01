@@ -123,14 +123,14 @@ bool LogicImpl::isWall(int index)
 
 void LogicImpl::appendToUnprocessed(int index)
 {
- if(!isStartCell(index) && !unprocessed.contains(cells->at(index)))
+ if(!isStartCell(index) && !isWall(index) && !unprocessed.contains(cells->at(index)))
 	unprocessed.append(cells->at(index));
 }
 
 void LogicImpl::updateValue(Cell *c, int index)
 {
  int value=cells->at(index)->getValue();
- if(value!=-1)
+ if(value!=-1 && !isWall(index))
 	if(c->getValue()==-1 || c->getValue()>value+1)
 	 {
 		c->setValue(value + 1);
