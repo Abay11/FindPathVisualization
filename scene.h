@@ -12,8 +12,8 @@ class Scene : public QGraphicsScene
  Q_OBJECT
 private:
  QVector<Cell*> cells;
- Cell *start;
- Cell *finish;
+ Cell *start=nullptr;
+ Cell *finish=nullptr;
  int sceneSideLength;
 
 public:

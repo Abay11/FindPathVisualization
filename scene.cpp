@@ -57,6 +57,8 @@ void Scene::slotCleanAll()
 
 void Scene::slotSetStartCell()
 {
+ if(start) start->setBrush(Qt::white);
+
  start=qgraphicsitem_cast<Cell*>(focusItem());
  if(start)
 	qDebug()<<"Received start pos: "<<this->start->getCoordinates().y()
@@ -66,6 +68,8 @@ void Scene::slotSetStartCell()
 
 void Scene::slotSetFinishCell()
 {
+ if(finish) finish->setBrush(Qt::white);
+
  finish=qgraphicsitem_cast<Cell*>(focusItem());
  if(finish)
 	qDebug()<<"Received finish pos: "<<this->finish->getCoordinates().y()
