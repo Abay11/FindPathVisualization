@@ -25,6 +25,8 @@ void LogicImpl::calcValues()
 	 if(c!=startCell && c!=finishCell)
 		c->setBrush(QBrush(Qt::yellow));
 
+	 qApp->processEvents();
+
 	 int x=(c)->getCoordinates().x();
 	 int y=(c)->getCoordinates().y();
 	 int index=0;

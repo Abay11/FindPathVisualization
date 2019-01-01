@@ -5,6 +5,7 @@
 
 #include <QVector>
 #include <QQueue>
+#include <QApplication>
 
 class LogicImpl
 {
