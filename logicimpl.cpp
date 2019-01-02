@@ -63,36 +63,39 @@ void LogicImpl::calcValues()
 		 appendToUnprocessed(index);
 		}
 
-	 //bottom right
-	 index=(y+1)*count+x+1;
-	 if(index<cellsSize && index<(y+1)*count+count)
+	 if(allowDiagonal)
 		{
-		 updateValue(c, index);
-		 appendToUnprocessed(index);
-		}
+		 //bottom right
+		 index=(y+1)*count+x+1;
+		 if(index<cellsSize && index<(y+1)*count+count)
+			{
+			 updateValue(c, index);
+			 appendToUnprocessed(index);
+			}
 
-	 //bottom left
-	 index=(y+1)*count+x-1;
-	 if(index<cellsSize && index>=(y+1)*count)
-		{
-		 updateValue(c, index);
-		 appendToUnprocessed(index);
-		}
+		 //bottom left
+		 index=(y+1)*count+x-1;
+		 if(index<cellsSize && index>=(y+1)*count)
+			{
+			 updateValue(c, index);
+			 appendToUnprocessed(index);
+			}
 
-	 //top right
-	 index=(y-1)*count+x+1;
-	 if(x<count-1 && index>=0 && index<=(y-1)*count+count)
-		{
-		 updateValue(c, index);
-		 appendToUnprocessed(index);
-		}
+		 //top right
+		 index=(y-1)*count+x+1;
+		 if(x<count-1 && index>=0 && index<=(y-1)*count+count)
+			{
+			 updateValue(c, index);
+			 appendToUnprocessed(index);
+			}
 
-	 //top left
-	 index=(y-1)*count+x-1;
-	 if(index>=0 && index>=(y-1)*count)
-		{
-		 updateValue(c, index);
-		 appendToUnprocessed(index);
+		 //top left
+		 index=(y-1)*count+x-1;
+		 if(index>=0 && index>=(y-1)*count)
+			{
+			 updateValue(c, index);
+			 appendToUnprocessed(index);
+			}
 		}
 
 	 if(c==finishCell)
@@ -139,4 +142,9 @@ void LogicImpl::updateValue(Cell *c, int index)
 		c->setValue(value + 1);
 		c->setParent(cells->at(index));
 	 }
+}
+
+void LogicImpl::setDiagonalPolicy(bool policy)
+{
+ allowDiagonal=policy;
 }

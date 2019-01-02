@@ -16,6 +16,7 @@ private:
  Cell *startCell=nullptr;
  Cell *finishCell=nullptr;
  QQueue<Cell *> unprocessed;
+ bool allowDiagonal=true;
 
 public:
  LogicImpl(QVector<Cell *> *cells,
@@ -27,6 +28,7 @@ public:
  bool isWall(int index);
  void appendToUnprocessed(int index);
  void updateValue(Cell *c, int index);
+ void setDiagonalPolicy(bool policy);
 };
 
 #endif // FINDPATHIMPLEMENTATION_H

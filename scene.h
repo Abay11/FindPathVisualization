@@ -16,6 +16,7 @@ private:
  Cell *finish=nullptr;
  int sceneSideLength;
  int cellsCount;
+ int diagonalPolicy=Qt::Checked;
 
 public:
  Scene(qreal x, qreal y, int sceneSideLength);
@@ -27,6 +28,7 @@ public:
  void slotCleanAll();
  void slotSetStartCell();
  void slotSetFinishCell();
+ void slotSetDiagonalPolicy(int policy);
 
 signals:
  void newStatus(QString text);

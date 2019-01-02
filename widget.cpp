@@ -47,9 +47,12 @@ Widget::Widget(QWidget *child, QWidget *parent)
  pcmdStart=new QPushButton("Start search");
  pcmdClean=new QPushButton("Clean all");
  status=new QLabel("Status: No actions");
+ diagonalPolicy=new QCheckBox("Allow diagonal", this);
+ diagonalPolicy->setCheckState(Qt::Checked);
 
  phlay->addWidget(pcmdStart);
  phlay->addWidget(pcmdClean);
+ phlay->addWidget(diagonalPolicy);
  phlay->addWidget(status);
 
  pvlay->addWidget(child);
@@ -60,6 +63,7 @@ Widget::Widget(QWidget *child, QWidget *parent)
 
  connect(pcmdStart, SIGNAL(clicked()), SIGNAL(startSearch()));
  connect(pcmdClean, SIGNAL(clicked()), SIGNAL(cleanAll()));
+ connect(diagonalPolicy, SIGNAL(stateChanged(int)), SIGNAL(diagonalPolicyChanged(int)));
 }
 
 void Widget::slotSetStatus(QString status)

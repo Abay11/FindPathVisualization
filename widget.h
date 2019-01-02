@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QCheckBox>
 #include <QKeyEvent>
 #include <QDebug>
 
@@ -19,6 +20,7 @@ private:
  QPushButton *pcmdStart;
  QPushButton *pcmdClean;
  QLabel *status;
+ QCheckBox *diagonalPolicy;
 
  bool isDrawing=false;
  bool isRemoving=false;
@@ -34,6 +36,7 @@ signals:
  void cleanAll();
  void startInstalled();
  void finishInstalled();
+ void diagonalPolicyChanged(int state);
 
 public slots:
  void slotSetStatus(QString status);

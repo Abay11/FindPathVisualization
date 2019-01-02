@@ -43,6 +43,8 @@ void Scene::slotStartSearch()
 
 	 LogicImpl *logic=new LogicImpl(&cells, cellsCount);
 	 logic->setStartFinish(start, finish);
+	 bool allowDiagonal = diagonalPolicy==Qt::Checked;
+	 logic->setDiagonalPolicy(allowDiagonal);
 	 logic->calcValues();
 
 	 auto path=logic->buildPath();
@@ -97,4 +99,9 @@ void Scene::slotSetFinishCell()
 	qDebug()<<"Received finish pos: "<<this->finish->getCoordinates().y()
 				<<this->finish->getCoordinates().x();
  else qWarning()<<"Attempt to install null to finish";
+}
+
+void Scene::slotSetDiagonalPolicy(int policy)
+{
+ diagonalPolicy=policy;
 }
