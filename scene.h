@@ -19,6 +19,7 @@ private:
 public:
  Scene(qreal x, qreal y, int sceneSideLength);
  void fillOut(qreal cellSideLength);
+ void cleanMap(bool resetWallsToo=false);
 
  public slots:
  void slotStartSearch();
