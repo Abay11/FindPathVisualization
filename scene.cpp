@@ -7,14 +7,14 @@ Scene::Scene(qreal x, qreal y, int length)
  this->sceneSideLength=length;
 }
 
-void Scene::fillOut(qreal length)
+void Scene::fillOut(qreal cellLength)
 {
- int sideLength=static_cast<int>(width()/length);
+ cellsCount=static_cast<int>(width()/cellLength);
 
- for(int i=0; i<sideLength; ++i)
-	for(int j=0; j<sideLength; ++j)
+ for(int i=0; i<cellsCount; ++i)
+	for(int j=0; j<cellsCount; ++j)
 	 {
-		Cell *c=new Cell(i*length, j*length, length);
+		Cell *c=new Cell(i*cellLength, j*cellLength, cellLength);
 		c->setCoordinates(i, j);
 
 		cells.push_back(c);
@@ -41,7 +41,7 @@ void Scene::slotStartSearch()
 	{
 	 cleanMap();
 
-	 LogicImpl *logic=new LogicImpl(&cells, 10);
+	 LogicImpl *logic=new LogicImpl(&cells, cellsCount);
 	 logic->setStartFinish(start, finish);
 	 logic->calcValues();
 

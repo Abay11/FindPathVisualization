@@ -15,10 +15,11 @@ private:
  Cell *start=nullptr;
  Cell *finish=nullptr;
  int sceneSideLength;
+ int cellsCount;
 
 public:
  Scene(qreal x, qreal y, int sceneSideLength);
- void fillOut(qreal cellSideLength);
+ void fillOut(qreal cellLength);
  void cleanMap(bool resetWallsToo=false);
 
  public slots:
