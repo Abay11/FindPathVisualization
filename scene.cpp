@@ -31,6 +31,8 @@ void Scene::cleanMap(bool resetWallsToo)
 	 if((c!=start && c!=finish) && ((c->brush()!=QBrush(Qt::black) || resetWallsToo)))
 		 c->setBrush(QBrush(Qt::white));
 	}
+
+ emit newStatus("Nothing");
 }
 
 void Scene::slotStartSearch()
@@ -48,10 +50,12 @@ void Scene::slotStartSearch()
 		{
 		 for(auto c : *path)
 			if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+
+		 emit newStatus("Path found");
 		}
 	 else
 		{
-		 qDebug()<<"Path not found";
+		 emit newStatus("Path not found");
 		}
 
 	 delete path;

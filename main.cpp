@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
 // /*
  Scene *scene=new Scene(0,0,800);
- scene->fillOut(20);
+ scene->fillOut(80);
 
  View *v=new View;
  v->setScene(scene);
@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
  QObject::connect(pwidget, SIGNAL(startSearch()), scene, SLOT(slotStartSearch()));
  QObject::connect(pwidget, SIGNAL(startInstalled()), scene, SLOT(slotSetStartCell()));
  QObject::connect(pwidget, SIGNAL(finishInstalled()), scene, SLOT(slotSetFinishCell()));
+ QObject::connect(scene, SIGNAL(newStatus(QString)), pwidget, SLOT(slotSetStatus(QString)));
 
  QMainWindow main;
  main.setCentralWidget(pwidget);

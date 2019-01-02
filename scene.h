@@ -27,6 +27,9 @@ public:
  void slotSetStartCell();
  void slotSetFinishCell();
 
+signals:
+ void newStatus(QString text);
+
 };
 
 #endif // SCENE_H

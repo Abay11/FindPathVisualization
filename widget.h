@@ -18,7 +18,7 @@ private:
  QVBoxLayout *pvlay;
  QPushButton *pcmdStart;
  QPushButton *pcmdClean;
- QLabel *ptextInfo;
+ QLabel *status;
 
  bool isDrawing=false;
  bool isRemoving=false;
@@ -36,6 +36,7 @@ signals:
  void finishInstalled();
 
 public slots:
+ void slotSetStatus(QString status);
 };
 
 #endif // SIMPLE_H
