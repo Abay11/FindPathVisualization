@@ -13,8 +13,8 @@ private:
  QVector<Cell *> *cells;
  int cellsSize=0;
  int count;
- Cell *startCell;
- Cell *finishCell;
+ Cell *startCell=nullptr;
+ Cell *finishCell=nullptr;
  QQueue<Cell *> unprocessed;
 
 public:

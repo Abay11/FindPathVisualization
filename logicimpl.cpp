@@ -18,7 +18,7 @@ void LogicImpl::calcValues()
  startCell->setValue(0);
  unprocessed.append(startCell);
 
- for(int i=0; i<cellsSize; ++i)
+ for(int i=0; i<cellsSize && i<unprocessed.size(); ++i)
 	{
 	 auto c = unprocessed.at(i);
 
@@ -103,10 +103,13 @@ void LogicImpl::calcValues()
 QVector<Cell *> *LogicImpl::buildPath()
 {
  QVector<Cell *> *path=new QVector<Cell *>;
- path->append(finishCell->getParent());
- for(int i=0, size=path->size(); i<size; ++i, size=path->size())
-	if(path->at(i)->getParent())
-		path->append(path->at(i)->getParent());
+ if(finishCell && finishCell->getParent())
+	{
+	 path->append(finishCell->getParent());
+	 for(int i=0, size=path->size(); i<size; ++i, size=path->size())
+		if(path->at(i)->getParent())
+		 path->append(path->at(i)->getParent());
+	}
 
  return path;
 }

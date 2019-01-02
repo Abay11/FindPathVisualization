@@ -39,13 +39,20 @@ void Scene::slotStartSearch()
 	{
 	 cleanMap();
 
-	 LogicImpl *logic=new LogicImpl(&cells, 40);
+	 LogicImpl *logic=new LogicImpl(&cells, 10);
 	 logic->setStartFinish(start, finish);
-
 	 logic->calcValues();
+
 	 auto path=logic->buildPath();
-	 for(auto c : *path)
-		if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+	 if(path->size()>0)
+		{
+		 for(auto c : *path)
+			if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+		}
+	 else
+		{
+		 qDebug()<<"Path not found";
+		}
 
 	 delete path;
 	 delete logic;
