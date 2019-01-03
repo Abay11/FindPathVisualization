@@ -110,8 +110,8 @@ QVector<Cell *> *LogicImpl::buildPath()
 	{
 	 path->append(finishCell->getParent());
 	 for(int i=0, size=path->size(); i<size; ++i, size=path->size())
-		if(path->at(i)->getParent())
-		 path->append(path->at(i)->getParent());
+		if(path->first()->getParent())
+		 path->prepend(path->first()->getParent());
 	}
 
  return path;
