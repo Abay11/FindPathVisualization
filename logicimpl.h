@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QQueue>
 #include <QApplication>
+#include <QThread>
 
 class LogicImpl
 {
@@ -19,6 +20,8 @@ private:
  bool allowDiagonal=true;
 
 public:
+ unsigned sleep=0;
+
  LogicImpl(QVector<Cell *> *cells,
 					 int sideCount);
  void setStartFinish(Cell *startCell, Cell *finishCell);

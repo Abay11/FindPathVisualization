@@ -48,11 +48,18 @@ void Scene::slotStartSearch()
 	 logic->calcValues();
 
 	 auto path=logic->buildPath();
+	 cleanMap();
 	 if(path->size()>0)
 		{
 		 for(auto c : *path)
-			if(c!=start) c->setBrush(QBrush(Qt::darkMagenta));
+			 if(c!=start)
+				{
+				 c->setBrush(QBrush(Qt::darkMagenta));
+				 if(sleep)
+					QThread::msleep(sleep);
 
+				 qApp->processEvents();
+				}
 		 emit newStatus("Path found");
 		}
 	 else

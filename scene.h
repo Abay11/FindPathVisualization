@@ -6,6 +6,7 @@
 
 #include <QGraphicsScene>
 #include <QKeyEvent>
+#include <QThread>
 
 class Scene : public QGraphicsScene
 {
@@ -19,6 +20,8 @@ private:
  int diagonalPolicy=Qt::Checked;
 
 public:
+ unsigned sleep=0;
+
  Scene(qreal x, qreal y, int sceneSideLength);
  void fillOut(qreal cellLength);
  void cleanMap(bool resetWallsToo=false);
