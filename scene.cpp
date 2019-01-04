@@ -119,3 +119,82 @@ void Scene::slotSetDelay(int value)
  delay=static_cast<unsigned>(value);
  logic->delay=delay;
 }
+
+void Scene::slotSave(const QString &path)
+{
+ QFile *file=new QFile(path);
+ if(file->open(QFile::WriteOnly))
+	{
+	 QTextStream stream(file);
+	 stream<<cellsCount<<endl;
+	 auto curCell=cells.begin();
+	 QString line;
+	 for(int i=0; i<cellsCount; ++i)
+		{
+		 for(int j=0; j<cellsCount; ++j, ++curCell)
+			{
+			 if((*curCell)->brush()==QBrush(Qt::black))
+				{
+				 line+="#";
+				}
+			 else
+				{
+				 line+=" ";
+				}
+			}
+		 stream<<line<<endl;
+		 line="";
+		}
+
+	 file->close();
+	 delete file;
+	 emit newStatus("The pattern saved");
+	}
+ else
+	{
+	 emit newStatus("Couldn't open the file");
+	}
+}
+
+void Scene::slotUpload(const QString &path)
+{
+ QFile *file=new QFile(path);
+ if(file->open(QFile::ReadOnly))
+	{
+	 QTextStream stream(file);
+	 QString line;
+	 stream>>line;
+	 int patternSize=line.toInt();
+	 auto curCell=cells.begin();
+	 if(cellsCount==patternSize)
+		{
+		 for(int i=0; i<patternSize; ++i)
+			{
+			 line=stream.readLine();
+			 qDebug()<<line;
+			 for(int j=0; j<patternSize; ++j, ++curCell)
+				{
+				 if(line[j]=="#")
+					{
+					 (*curCell)->setBrush(QBrush(Qt::black));
+					}
+				 else
+					{
+					 (*curCell)->setBrush(QBrush(Qt::white));
+					}
+				}
+			}
+		 emit newStatus("A pattern uploaded");
+		}
+	 else
+		{
+		 emit newStatus("Couldn't use the pattern: sizes do not match");
+		}
+	 file->close();
+	 delete file;
+	}
+ else
+	{
+	 emit newStatus("Couldn't open the file");
+	}
+}
