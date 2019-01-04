@@ -41,7 +41,7 @@ void Scene::slotStartSearch()
 	{
 	 cleanMap();
 
-	 LogicImpl *logic=new LogicImpl(&cells, cellsCount);
+	 logic=new LogicImpl(&cells, cellsCount);
 	 logic->setStartFinish(start, finish);
 	 bool allowDiagonal = diagonalPolicy==Qt::Checked;
 	 logic->setDiagonalPolicy(allowDiagonal);
@@ -55,8 +55,8 @@ void Scene::slotStartSearch()
 			 if(c!=start)
 				{
 				 c->setBrush(QBrush(Qt::darkMagenta));
-				 if(sleep)
-					QThread::msleep(sleep);
+				 if(delay)
+					QThread::msleep(delay);
 
 				 qApp->processEvents();
 				}
@@ -69,6 +69,7 @@ void Scene::slotStartSearch()
 
 	 delete path;
 	 delete logic;
+	 logic=nullptr;
 	}
  else
 	{
@@ -111,4 +112,10 @@ void Scene::slotSetFinishCell()
 void Scene::slotSetDiagonalPolicy(int policy)
 {
  diagonalPolicy=policy;
+}
+
+void Scene::slotSetDelay(int value)
+{
+ delay=static_cast<unsigned>(value);
+ logic->delay=delay;
 }

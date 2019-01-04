@@ -4,8 +4,10 @@
 #include <QApplication>
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QFormLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QSlider>
 #include <QCheckBox>
 #include <QKeyEvent>
 #include <QDebug>
@@ -16,7 +18,9 @@ class Widget : public QWidget
 private:
  QWidget *child;
  QHBoxLayout *phlay;
+ QHBoxLayout *sliderLay;
  QVBoxLayout *pvlay;
+ QSlider *delaySlider;
  QPushButton *pcmdStart;
  QPushButton *pcmdClean;
  QLabel *status;
@@ -30,6 +34,7 @@ protected:
 
 public:
  explicit Widget(QWidget *child, QWidget *parent = nullptr);
+ void setDelay(int value);
 
 signals:
  void startSearch();
@@ -37,6 +42,7 @@ signals:
  void startInstalled();
  void finishInstalled();
  void diagonalPolicyChanged(int state);
+ void delayValueChanged(int value);
 
 public slots:
  void slotSetStatus(QString status);

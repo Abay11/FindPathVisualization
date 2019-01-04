@@ -1,5 +1,7 @@
 #include "logicimpl.h"
 
+unsigned LogicImpl::delay=0;
+
 LogicImpl::LogicImpl(QVector<Cell *> *cells, int count)
 {
  this->cells=cells;
@@ -26,8 +28,8 @@ void LogicImpl::calcValues()
 		{
 		 c->setBrush(QBrush(Qt::yellow));
 		 qApp->processEvents();
-		 if(sleep)
-			QThread::msleep(sleep);
+		 if(delay)
+			QThread::msleep(delay);
 		}
 
 

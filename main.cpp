@@ -22,7 +22,10 @@ int main(int argc, char *argv[])
  QObject::connect(pwidget, SIGNAL(startInstalled()), scene, SLOT(slotSetStartCell()));
  QObject::connect(pwidget, SIGNAL(finishInstalled()), scene, SLOT(slotSetFinishCell()));
  QObject::connect(pwidget, SIGNAL(diagonalPolicyChanged(int)), scene, SLOT(slotSetDiagonalPolicy(int)));
+ QObject::connect(pwidget, SIGNAL(delayValueChanged(int)), scene, SLOT(slotSetDelay(int)));
  QObject::connect(scene, SIGNAL(newStatus(QString)), pwidget, SLOT(slotSetStatus(QString)));
+
+ pwidget->setDelay(50);
 
  QMainWindow main;
  main.setCentralWidget(pwidget);

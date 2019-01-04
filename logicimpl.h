@@ -20,7 +20,7 @@ private:
  bool allowDiagonal=true;
 
 public:
- unsigned sleep=0;
+ static unsigned delay;
 
  LogicImpl(QVector<Cell *> *cells,
 					 int sideCount);

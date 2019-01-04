@@ -42,6 +42,7 @@ Widget::Widget(QWidget *child, QWidget *parent)
  :QWidget(parent),
 	 child(child),
 	 phlay(new QHBoxLayout),
+	 sliderLay(new QHBoxLayout),
 	 pvlay(new QVBoxLayout)
 {
  pcmdStart=new QPushButton("Start search");
@@ -50,12 +51,25 @@ Widget::Widget(QWidget *child, QWidget *parent)
  diagonalPolicy=new QCheckBox("Allow diagonal", this);
  diagonalPolicy->setCheckState(Qt::Checked);
 
+ sliderLay->addWidget(new QLabel("Delay (ms)"));
+ delaySlider=new QSlider(Qt::Horizontal, this);
+ delaySlider->setRange(0, 500);
+ delaySlider->setSingleStep(10);
+ sliderLay->addWidget(delaySlider);
+ QLabel *delayValue=new QLabel(this);
+ delayValue->setNum(delaySlider->value());
+ sliderLay->addWidget(delayValue);
+ connect(delaySlider, SIGNAL(valueChanged(int)), delayValue, SLOT(setNum(int)));
+ delaySlider->setValue(10);
+ connect(delaySlider, SIGNAL(valueChanged(int)), SIGNAL(delayValueChanged(int)));
+
  phlay->addWidget(pcmdStart);
  phlay->addWidget(pcmdClean);
  phlay->addWidget(diagonalPolicy);
  phlay->addWidget(status);
 
  pvlay->addWidget(child);
+ pvlay->addLayout(sliderLay);
  pvlay->addLayout(phlay);
 
  setLayout(pvlay);
@@ -64,6 +78,11 @@ Widget::Widget(QWidget *child, QWidget *parent)
  connect(pcmdStart, SIGNAL(clicked()), SIGNAL(startSearch()));
  connect(pcmdClean, SIGNAL(clicked()), SIGNAL(cleanAll()));
  connect(diagonalPolicy, SIGNAL(stateChanged(int)), SIGNAL(diagonalPolicyChanged(int)));
+}
+
+void Widget::setDelay(int value)
+{
+ delaySlider->setValue(value);
 }
 
 void Widget::slotSetStatus(QString status)

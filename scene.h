@@ -18,9 +18,10 @@ private:
  int sceneSideLength;
  int cellsCount;
  int diagonalPolicy=Qt::Checked;
+ LogicImpl *logic=nullptr;
 
 public:
- unsigned sleep=0;
+ unsigned delay=0;
 
  Scene(qreal x, qreal y, int sceneSideLength);
  void fillOut(qreal cellLength);
@@ -32,6 +33,7 @@ public:
  void slotSetStartCell();
  void slotSetFinishCell();
  void slotSetDiagonalPolicy(int policy);
+ void slotSetDelay(int value);
 
 signals:
  void newStatus(QString text);
