@@ -7,6 +7,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QThread>
+#include <QFile>
 
 class Scene : public QGraphicsScene
 {
@@ -34,6 +35,8 @@ public:
  void slotSetFinishCell();
  void slotSetDiagonalPolicy(int policy);
  void slotSetDelay(int value);
+ void slotSave(const QString &path);
+ void slotUpload(const QString &path);
 
 signals:
  void newStatus(QString text);

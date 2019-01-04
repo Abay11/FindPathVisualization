@@ -41,10 +41,23 @@ bool Widget::eventFilter(QObject *obj, QEvent *pe)
 Widget::Widget(QWidget *child, QWidget *parent)
  :QWidget(parent),
 	 child(child),
+	 controlLay(new QHBoxLayout),
 	 phlay(new QHBoxLayout),
 	 sliderLay(new QHBoxLayout),
 	 pvlay(new QVBoxLayout)
 {
+ cmdSave=new QPushButton("Save pattern to a file");
+ savingFileDialog=new QFileDialog(this);
+ connect(cmdSave, SIGNAL(clicked()), savingFileDialog, SLOT(open()));
+ connect(savingFileDialog, SIGNAL(fileSelected(const QString &)), SIGNAL(saveClicked(const QString &)));
+ controlLay->addWidget(cmdSave);
+
+ cmdUpload=new QPushButton("Upload pattern from a file");
+ uploadingFileDialog=new QFileDialog(this);
+ connect(cmdUpload, SIGNAL(clicked()), uploadingFileDialog, SLOT(open()));
+ connect(uploadingFileDialog, SIGNAL(fileSelected(const QString &)), SIGNAL(uploadClicked(const QString &)));
+ controlLay->addWidget(cmdUpload);
+
  pcmdStart=new QPushButton("Start search");
  pcmdClean=new QPushButton("Clean all");
  status=new QLabel("Status: No actions");
@@ -68,6 +81,7 @@ Widget::Widget(QWidget *child, QWidget *parent)
  phlay->addWidget(diagonalPolicy);
  phlay->addWidget(status);
 
+ pvlay->addLayout(controlLay);
  pvlay->addWidget(child);
  pvlay->addLayout(sliderLay);
  pvlay->addLayout(phlay);
