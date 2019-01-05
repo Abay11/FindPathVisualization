@@ -163,7 +163,7 @@ void Scene::slotUpload(const QString &path)
 	{
 	 QTextStream stream(file);
 	 QString line;
-	 stream>>line;
+	 line=stream.readLine();
 	 int patternSize=line.toInt();
 	 auto curCell=cells.begin();
 	 if(cellsCount==patternSize)
@@ -171,7 +171,6 @@ void Scene::slotUpload(const QString &path)
 		 for(int i=0; i<patternSize; ++i)
 			{
 			 line=stream.readLine();
-			 qDebug()<<line;
 			 for(int j=0; j<patternSize; ++j, ++curCell)
 				{
 				 if(line[j]=="#")
