@@ -1,4 +1,4 @@
-﻿#include "scene.h"
+#include "scene.h"
 
 
 Scene::Scene(qreal x, qreal y, int length)
@@ -11,11 +11,11 @@ void Scene::fillOut(qreal cellLength)
 {
  cellsCount=static_cast<int>(width()/cellLength);
 
- for(int i=0; i<cellsCount; ++i)
-	for(int j=0; j<cellsCount; ++j)
+ for(int y=0; y<cellsCount; ++y)
+	for(int x=0; x<cellsCount; ++x)
 	 {
-		Cell *c=new Cell(i*cellLength, j*cellLength, cellLength);
-		c->setCoordinates(i, j);
+		Cell *c=new Cell(x*cellLength, y*cellLength, cellLength);
+		c->setCoordinates(y, x);
 
 		cells.push_back(c);
 		addItem(c);
