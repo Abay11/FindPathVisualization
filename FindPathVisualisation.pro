@@ -30,16 +30,24 @@ SOURCES += \
     view.cpp \
     widget.cpp \
     cell.cpp \
-    logicimpl.cpp
+    logicimpl.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     scene.h \
     view.h \
     widget.h \
     cell.h \
-    logicimpl.h
+    logicimpl.h \
+    mainwindow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    mainwindow.ui
+
+RESOURCES += \
+    res.qrc
