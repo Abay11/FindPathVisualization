@@ -16,13 +16,15 @@ class MainWindow : public QWidget
 
 public:
  explicit MainWindow(QWidget *parent = nullptr);
+ std::pair<Widget *, Scene *>createNew(int cellCount);
  ~MainWindow();
 
 private:
  Ui::MainWindow *ui;
 
 public slots:
- void createNew();
+ void slotCreateNew();
+ void slotLoadFromFile();
 };
 
 #endif // MAINWINDOW_H

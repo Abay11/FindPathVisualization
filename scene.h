@@ -36,7 +36,7 @@ public:
  void slotSetDiagonalPolicy(int policy);
  void slotSetDelay(int value);
  void slotSave(const QString &path);
- void slotUpload(const QString &path);
+ void slotUpload(QStringList *lines);
 
 signals:
  void newStatus(QString text);

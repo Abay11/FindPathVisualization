@@ -156,22 +156,14 @@ void Scene::slotSave(const QString &path)
 	}
 }
 
-void Scene::slotUpload(const QString &path)
+void Scene::slotUpload(QStringList *lines)
 {
- QFile *file=new QFile(path);
- if(file->open(QFile::ReadOnly))
+ if(lines)
 	{
-	 QTextStream stream(file);
-	 QString line;
-	 line=stream.readLine();
-	 int patternSize=line.toInt();
-	 auto curCell=cells.begin();
-	 if(cellsCount==patternSize)
-		{
-		 for(int i=0; i<patternSize; ++i)
+	 auto curCell =cells.begin();
+		 for(auto line : *lines)
 			{
-			 line=stream.readLine();
-			 for(int j=0; j<patternSize; ++j, ++curCell)
+			 for(int j=0; j<cellsCount; ++j, ++curCell)
 				{
 				 if(line[j]=="#")
 					{
@@ -189,11 +181,6 @@ void Scene::slotUpload(const QString &path)
 		{
 		 emit newStatus("Couldn't use the pattern: sizes do not match");
 		}
-	 file->close();
-	 delete file;
-	}
- else
-	{
-	 emit newStatus("Couldn't open the file");
-	}
+
+ delete lines;
 }

@@ -630,5 +630,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotCreateNew()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>10</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>323</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotLoadFromFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>378</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>2</x>
+     <y>382</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>slotCreateNew()</slot>
+  <slot>slotLoadFromFile()</slot>
+ </slots>
 </ui>
