@@ -29,7 +29,6 @@ std::pair<Widget *, Scene *> MainWindow::createNew(int cellCount)
  QObject::connect(pwidget, SIGNAL(diagonalPolicyChanged(int)), scene, SLOT(slotSetDiagonalPolicy(int)));
  QObject::connect(pwidget, SIGNAL(delayValueChanged(int)), scene, SLOT(slotSetDelay(int)));
  QObject::connect(pwidget, SIGNAL(saveClicked(const QString &)), scene, SLOT(slotSave(const QString &)));
- QObject::connect(pwidget, SIGNAL(uploadClicked(const QString &)), scene, SLOT(slotUpload(const QString &)));
  QObject::connect(scene, SIGNAL(newStatus(QString)), pwidget, SLOT(slotSetStatus(QString)));
 
  pwidget->setDelay(50);

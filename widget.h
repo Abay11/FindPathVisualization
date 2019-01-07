@@ -50,7 +50,6 @@ signals:
  void diagonalPolicyChanged(int state);
  void delayValueChanged(int value);
  void saveClicked(const QString &filePath);
- void uploadClicked(const QString &filePath);
 
 public slots:
  void slotSetStatus(QString status);

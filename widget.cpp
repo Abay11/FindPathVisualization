@@ -50,13 +50,6 @@ Widget::Widget(QWidget *child, QWidget *parent)
  savingFileDialog=new QFileDialog(this);
  connect(cmdSave, SIGNAL(clicked()), savingFileDialog, SLOT(open()));
  connect(savingFileDialog, SIGNAL(fileSelected(const QString &)), SIGNAL(saveClicked(const QString &)));
- controlLay->addWidget(cmdSave);
-
- cmdUpload=new QPushButton("Upload pattern from a file");
- uploadingFileDialog=new QFileDialog(this);
- connect(cmdUpload, SIGNAL(clicked()), uploadingFileDialog, SLOT(open()));
- connect(uploadingFileDialog, SIGNAL(fileSelected(const QString &)), SIGNAL(uploadClicked(const QString &)));
- controlLay->addWidget(cmdUpload);
 
  pcmdStart=new QPushButton("Start search");
  pcmdClean=new QPushButton("Clean all");
@@ -76,6 +69,7 @@ Widget::Widget(QWidget *child, QWidget *parent)
  delaySlider->setValue(10);
  connect(delaySlider, SIGNAL(valueChanged(int)), SIGNAL(delayValueChanged(int)));
 
+ phlay->addWidget(cmdSave);
  phlay->addWidget(pcmdStart);
  phlay->addWidget(pcmdClean);
  phlay->addWidget(diagonalPolicy);
@@ -92,6 +86,8 @@ Widget::Widget(QWidget *child, QWidget *parent)
  connect(pcmdStart, SIGNAL(clicked()), SIGNAL(startSearch()));
  connect(pcmdClean, SIGNAL(clicked()), SIGNAL(cleanAll()));
  connect(diagonalPolicy, SIGNAL(stateChanged(int)), SIGNAL(diagonalPolicyChanged(int)));
+ setWindowIcon(QIcon(":/icon.svg"));
+ setWindowTitle("Pathing Viso");
 }
 
 void Widget::setDelay(int value)
