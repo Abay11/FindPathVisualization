@@ -1,9 +1,8 @@
 # FindPathVisualization
 You can watch a demo of a current actual version of the program works on Youtube: 
-https://youtu.be/e0knOl-T16M
-
-New demo:
 https://youtu.be/mgAU7jE8wzw
+
+Old demo: https://youtu.be/e0knOl-T16M
 
 ![titul](https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/49489225_2066083040145485_7132460766069784576_n.jpg?_nc_cat=109&_nc_pt=1&_nc_ht=scontent-arn2-1.xx&oh=2dc2200feb391c761bdf189421b853d3&oe=5CD95A2A)
 
